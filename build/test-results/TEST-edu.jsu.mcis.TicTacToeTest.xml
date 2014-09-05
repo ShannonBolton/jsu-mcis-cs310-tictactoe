@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="edu.jsu.mcis.TicTacToeTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2014-09-05T02:14:10" hostname="Shannon-PC" time="0.0">
+  <properties/>
+  <testcase name="winHorizontallyAsOBottomRow" classname="edu.jsu.mcis.TicTacToeTest" time="0.0"/>
+  <testcase name="winVerticallyAsXLeftColumn" classname="edu.jsu.mcis.TicTacToeTest" time="0.0"/>
+  <testcase name="winHorizontallyAsXTopRow" classname="edu.jsu.mcis.TicTacToeTest" time="0.0"/>
+  <testcase name="winVerticallyAsXRightColumn" classname="edu.jsu.mcis.TicTacToeTest" time="0.0"/>
+  <testcase name="ForceATie" classname="edu.jsu.mcis.TicTacToeTest" time="0.0"/>
+  <testcase name="checkForEmptySpot" classname="edu.jsu.mcis.TicTacToeTest" time="0.0"/>
+  <testcase name="winDiagonallyAsXBackSlash" classname="edu.jsu.mcis.TicTacToeTest" time="0.0"/>
+  <testcase name="PlayATurn" classname="edu.jsu.mcis.TicTacToeTest" time="0.0"/>
+  <testcase name="winHorizontallyAsOMiddleRow" classname="edu.jsu.mcis.TicTacToeTest" time="0.0"/>
+  <testcase name="winVerticallyAsOMiddleColumn" classname="edu.jsu.mcis.TicTacToeTest" time="0.0"/>
+  <testcase name="winDiagonallyAsOForwardSlash" classname="edu.jsu.mcis.TicTacToeTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

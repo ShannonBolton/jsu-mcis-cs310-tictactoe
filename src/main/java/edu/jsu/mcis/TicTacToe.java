@@ -8,6 +8,7 @@ public class TicTacToe {
 	private int zero = 0;
 	private int one = 1;
 	private int two = 2;
+	private String playerInLoc = "-";
 	
 	public TicTacToe() {
 		board = new String[3][3];
@@ -20,24 +21,32 @@ public class TicTacToe {
 		}
 	}
 
-	public void turn(int row, int col){
+
+	public String turn(int row, int col){
 		if(board[row][col] == "-") {
 			if(playerXTurn == true) {
 				board[row][col] = "X";
+				playerXTurn = false;
+				playerInLoc = "X";
 			}
 			else {
 				board[row][col] = "O";
+				playerXTurn = true;
+				playerInLoc = "O";
 			}
-			playerXTurn = !playerXTurn;
+		}
+		else{
+			playerInLoc = board[row][col];
 		}
 		CheckForAWinner();
+		return playerInLoc;
 	}
 	
 	public void CheckForAWinner(){
-		if(board[zero][zero].equals(board[one][one]) && board[zero][zero].equals(board[two][two])){
+		if(board[zero][zero] != "-" && board[zero][zero].equals(board[one][one]) && board[zero][zero].equals(board[two][two])){
 			winner = board[zero][zero];
 		}
-		else if(board[zero][two].equals(board[one][one]) && board[zero][two].equals(board[two][zero])){
+		else if(board[zero][two] != "-" && board[zero][two].equals(board[one][one]) && board[zero][two].equals(board[two][zero])){
 			winner = board[zero][two];
 		}
 		else if(board[zero][zero] != "-" && board[zero][zero].equals(board[zero][one]) && board[zero][zero].equals(board[zero][two])){
@@ -59,7 +68,16 @@ public class TicTacToe {
 			winner = board[zero][two];
 		}
 		else {
-			winner = "TIE";
+			int counter = 0;
+			for(int i=0; i<3; i++){
+				for(int j=0; j<3; j++){
+					if(board[i][j] != "-"){
+						counter++;
+					}
+				}
+			}
+			if(counter == 9){winner = "TIE";}
+			else{winner = "-";}
 		}
 	}
 	

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>TicTacToeGame.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jsu-mcis-cs310-tictactoe</a> &gt; <a href="index.source.html" class="el_package">edu.jsu.mcis</a> &gt; <span class="el_source">TicTacToeGame.java</span></div><h1>TicTacToeGame.java</h1><pre class="source lang-java linenums">package edu.jsu.mcis;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class TicTacToeGame extends JPanel implements MouseListener {
+
+	private JPanel game;
+	private TicTacToe ttt;
+	private JLabel[][] labels;
+	
+<span class="fc" id="L13">	public TicTacToeGame(){</span>
+<span class="fc" id="L14">		setLayout(new BorderLayout());</span>
+<span class="fc" id="L15">		game = new JPanel();</span>
+<span class="fc" id="L16">		game.setLayout(new GridLayout(3,3));</span>
+<span class="fc" id="L17">		ttt = new TicTacToe();</span>
+<span class="fc" id="L18">		labels = new JLabel[3][3];</span>
+		
+<span class="fc bfc" id="L20" title="All 2 branches covered.">		for(int i=0; i&lt;3; i++){</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">			for(int j=0; j&lt;3; j++){</span>
+<span class="fc" id="L22">				String mark = ttt.getLocation(i,j);</span>
+<span class="fc" id="L23">				labels[i][j] = new JLabel(&quot;&quot;);</span>
+<span class="fc" id="L24">				labels[i][j].setText(mark);</span>
+<span class="fc" id="L25">				labels[i][j].addMouseListener(this);</span>
+<span class="fc" id="L26">				labels[i][j].setPreferredSize(new Dimension(40,40));</span>
+<span class="fc" id="L27">				labels[i][j].setName(&quot;Location&quot; +i+j);</span>
+<span class="fc" id="L28">				game.add(labels[i][j]);</span>
+				}
+			}
+<span class="fc" id="L31">		add(game, BorderLayout.CENTER);</span>
+<span class="fc" id="L32">	}</span>
+
+	public String makeMark(int row, int column){
+<span class="fc" id="L35">		return ttt.turn(row, column);</span>
+	}
+	
+	public void mouseClicked(MouseEvent event1)
+<span class="nc" id="L39">	{}</span>
+	public void mousePressed(MouseEvent event1)
+<span class="nc" id="L41">	{}</span>
+	public void mouseEntered(MouseEvent event1)
+<span class="nc" id="L43">	{}</span>
+	public void mouseExited(MouseEvent event1)
+<span class="nc" id="L45">	{}</span>
+	public void mouseReleased(MouseEvent event1)
+	{
+<span class="nc bnc" id="L48" title="All 2 branches missed.">		if(event1.getModifiers() == InputEvent.BUTTON1_MASK){</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">			for(int i=0; i&lt;3; i++){</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">				for(int j=0; j&lt;3; j++){</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">					if(event1.getSource() == (JLabel)labels[i][j]){</span>
+<span class="nc" id="L52">						ttt.turn(i,j);</span>
+<span class="nc" id="L53">						labels[i][j].setText(ttt.getLocation(i,j));</span>
+					}
+				}
+			}
+<span class="nc bnc" id="L57" title="All 2 branches missed.">			if(ttt.getWinner() != &quot;-&quot;){</span>
+				//ttt.CheckForAWinner();
+<span class="nc" id="L59">				Winner();</span>
+			}
+			else {}
+		}
+<span class="nc" id="L63">	}</span>
+	public void Winner(){
+<span class="nc" id="L65">		(new Thread(new Runnable(){</span>
+			public void run(){
+<span class="nc" id="L67">			JOptionPane pane = new JOptionPane();</span>
+<span class="nc" id="L68">			pane.showMessageDialog(null, &quot;The winner is &quot; + ttt.getWinner(), &quot;Game Over&quot;, 0);</span>
+<span class="nc" id="L69">			}})).start();</span>
+<span class="nc" id="L70">	}</span>
+
+	
+	public static void main(String[] args) {
+<span class="nc" id="L74">		TicTacToeGame ticTacToeGame = new TicTacToeGame();</span>
+<span class="nc" id="L75">		JFrame window = new JFrame(&quot;Tic Tac Toe&quot;);</span>
+<span class="nc" id="L76">		window.add(ticTacToeGame);</span>
+<span class="nc" id="L77">		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L78">		window.pack();</span>
+<span class="nc" id="L79">		window.setVisible(true);</span>
+<span class="nc" id="L80">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

@@ -10,7 +10,7 @@ public class TicTacToeTest {
 		board = new TicTacToe();
 		board.turn(1,1);
 		board.turn(1,1);
-		assertEquals("X",board.getLocation(1,1));
+		assertEquals("X",board.turn(1,1));
 	}
 
 	@Test

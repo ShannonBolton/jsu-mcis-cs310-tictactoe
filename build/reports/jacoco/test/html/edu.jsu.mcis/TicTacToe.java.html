@@ -8,68 +8,86 @@ public class TicTacToe {
 <span class="fc" id="L8">	private int zero = 0;</span>
 <span class="fc" id="L9">	private int one = 1;</span>
 <span class="fc" id="L10">	private int two = 2;</span>
+<span class="fc" id="L11">	private String playerInLoc = &quot;-&quot;;</span>
 	
-<span class="fc" id="L12">	public TicTacToe() {</span>
-<span class="fc" id="L13">		board = new String[3][3];</span>
-<span class="fc" id="L14">		playerXTurn = true;</span>
+<span class="fc" id="L13">	public TicTacToe() {</span>
+<span class="fc" id="L14">		board = new String[3][3];</span>
+<span class="fc" id="L15">		playerXTurn = true;</span>
 		
-<span class="fc bfc" id="L16" title="All 2 branches covered.">		for(int i=0; i&lt;3; i++) {</span>
-<span class="fc bfc" id="L17" title="All 2 branches covered.">			for(int j=0; j&lt;3; j++) {</span>
-<span class="fc" id="L18">				board[i][j] = &quot;-&quot;;</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">		for(int i=0; i&lt;3; i++) {</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">			for(int j=0; j&lt;3; j++) {</span>
+<span class="fc" id="L19">				board[i][j] = &quot;-&quot;;</span>
 			}
 		}
-<span class="fc" id="L21">	}</span>
+<span class="fc" id="L22">	}</span>
 
-	public void turn(int row, int col){
-<span class="fc bfc" id="L24" title="All 2 branches covered.">		if(board[row][col] == &quot;-&quot;) {</span>
-<span class="fc bfc" id="L25" title="All 2 branches covered.">			if(playerXTurn == true) {</span>
-<span class="fc" id="L26">				board[row][col] = &quot;X&quot;;</span>
+
+	public String turn(int row, int col){
+<span class="fc bfc" id="L26" title="All 2 branches covered.">		if(board[row][col] == &quot;-&quot;) {</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">			if(playerXTurn == true) {</span>
+<span class="fc" id="L28">				board[row][col] = &quot;X&quot;;</span>
+<span class="fc" id="L29">				playerXTurn = false;</span>
+<span class="fc" id="L30">				playerInLoc = &quot;X&quot;;</span>
 			}
 			else {
-<span class="fc" id="L29">				board[row][col] = &quot;O&quot;;</span>
+<span class="fc" id="L33">				board[row][col] = &quot;O&quot;;</span>
+<span class="fc" id="L34">				playerXTurn = true;</span>
+<span class="fc" id="L35">				playerInLoc = &quot;O&quot;;</span>
 			}
-<span class="fc bfc" id="L31" title="All 2 branches covered.">			playerXTurn = !playerXTurn;</span>
 		}
-<span class="fc" id="L33">		CheckForAWinner();</span>
-<span class="fc" id="L34">	}</span>
+		else{
+<span class="fc" id="L39">			playerInLoc = board[row][col];</span>
+		}
+<span class="fc" id="L41">		CheckForAWinner();</span>
+<span class="fc" id="L42">		return playerInLoc;</span>
+	}
 	
 	public void CheckForAWinner(){
-<span class="fc bfc" id="L37" title="All 4 branches covered.">		if(board[zero][zero].equals(board[one][one]) &amp;&amp; board[zero][zero].equals(board[two][two])){</span>
-<span class="fc" id="L38">			winner = board[zero][zero];</span>
+<span class="fc bfc" id="L46" title="All 6 branches covered.">		if(board[zero][zero] != &quot;-&quot; &amp;&amp; board[zero][zero].equals(board[one][one]) &amp;&amp; board[zero][zero].equals(board[two][two])){</span>
+<span class="fc" id="L47">			winner = board[zero][zero];</span>
 		}
-<span class="fc bfc" id="L40" title="All 4 branches covered.">		else if(board[zero][two].equals(board[one][one]) &amp;&amp; board[zero][two].equals(board[two][zero])){</span>
-<span class="fc" id="L41">			winner = board[zero][two];</span>
+<span class="fc bfc" id="L49" title="All 6 branches covered.">		else if(board[zero][two] != &quot;-&quot; &amp;&amp; board[zero][two].equals(board[one][one]) &amp;&amp; board[zero][two].equals(board[two][zero])){</span>
+<span class="fc" id="L50">			winner = board[zero][two];</span>
 		}
-<span class="fc bfc" id="L43" title="All 6 branches covered.">		else if(board[zero][zero] != &quot;-&quot; &amp;&amp; board[zero][zero].equals(board[zero][one]) &amp;&amp; board[zero][zero].equals(board[zero][two])){</span>
-<span class="fc" id="L44">			winner = board[zero][zero];</span>
-		}
-<span class="fc bfc" id="L46" title="All 6 branches covered.">		else if(board[one][zero] != &quot;-&quot; &amp;&amp; board[one][zero].equals(board[one][one]) &amp;&amp; board[one][zero].equals(board[one][two])){</span>
-<span class="fc" id="L47">			winner = board[one][zero];</span>
-		}
-<span class="fc bfc" id="L49" title="All 6 branches covered.">		else if(board[two][zero] != &quot;-&quot; &amp;&amp; board[two][zero].equals(board[two][one]) &amp;&amp; board[two][zero].equals(board[two][two])){</span>
-<span class="fc" id="L50">			winner = board[two][zero];</span>
-		}
-<span class="fc bfc" id="L52" title="All 6 branches covered.">		else if(board[zero][zero] != &quot;-&quot; &amp;&amp;board[zero][zero].equals(board[one][zero]) &amp;&amp; board[zero][zero].equals(board[two][zero])){</span>
+<span class="fc bfc" id="L52" title="All 6 branches covered.">		else if(board[zero][zero] != &quot;-&quot; &amp;&amp; board[zero][zero].equals(board[zero][one]) &amp;&amp; board[zero][zero].equals(board[zero][two])){</span>
 <span class="fc" id="L53">			winner = board[zero][zero];</span>
 		}
-<span class="fc bfc" id="L55" title="All 6 branches covered.">		else if(board[zero][one] != &quot;-&quot; &amp;&amp;board[zero][one].equals(board[one][one]) &amp;&amp; board[zero][one].equals(board[two][one])){</span>
-<span class="fc" id="L56">			winner = board[zero][one];</span>
+<span class="fc bfc" id="L55" title="All 6 branches covered.">		else if(board[one][zero] != &quot;-&quot; &amp;&amp; board[one][zero].equals(board[one][one]) &amp;&amp; board[one][zero].equals(board[one][two])){</span>
+<span class="fc" id="L56">			winner = board[one][zero];</span>
 		}
-<span class="fc bfc" id="L58" title="All 6 branches covered.">		else if(board[zero][two] != &quot;-&quot; &amp;&amp;board[zero][two].equals(board[one][two]) &amp;&amp; board[zero][two].equals(board[two][two])){</span>
-<span class="fc" id="L59">			winner = board[zero][two];</span>
+<span class="fc bfc" id="L58" title="All 6 branches covered.">		else if(board[two][zero] != &quot;-&quot; &amp;&amp; board[two][zero].equals(board[two][one]) &amp;&amp; board[two][zero].equals(board[two][two])){</span>
+<span class="fc" id="L59">			winner = board[two][zero];</span>
+		}
+<span class="fc bfc" id="L61" title="All 6 branches covered.">		else if(board[zero][zero] != &quot;-&quot; &amp;&amp;board[zero][zero].equals(board[one][zero]) &amp;&amp; board[zero][zero].equals(board[two][zero])){</span>
+<span class="fc" id="L62">			winner = board[zero][zero];</span>
+		}
+<span class="fc bfc" id="L64" title="All 6 branches covered.">		else if(board[zero][one] != &quot;-&quot; &amp;&amp;board[zero][one].equals(board[one][one]) &amp;&amp; board[zero][one].equals(board[two][one])){</span>
+<span class="fc" id="L65">			winner = board[zero][one];</span>
+		}
+<span class="fc bfc" id="L67" title="All 6 branches covered.">		else if(board[zero][two] != &quot;-&quot; &amp;&amp;board[zero][two].equals(board[one][two]) &amp;&amp; board[zero][two].equals(board[two][two])){</span>
+<span class="fc" id="L68">			winner = board[zero][two];</span>
 		}
 		else {
-<span class="fc" id="L62">			winner = &quot;TIE&quot;;</span>
+<span class="fc" id="L71">			int counter = 0;</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">			for(int i=0; i&lt;3; i++){</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">				for(int j=0; j&lt;3; j++){</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">					if(board[i][j] != &quot;-&quot;){</span>
+<span class="fc" id="L75">						counter++;</span>
+					}
+				}
+			}
+<span class="fc bfc" id="L79" title="All 2 branches covered.">			if(counter == 9){winner = &quot;TIE&quot;;}</span>
+<span class="fc" id="L80">			else{winner = &quot;-&quot;;}</span>
 		}
-<span class="fc" id="L64">	}</span>
+<span class="fc" id="L82">	}</span>
 	
 	
 	public String getLocation(int row, int col){	
-<span class="fc" id="L68">		return board[row][col];</span>
+<span class="fc" id="L86">		return board[row][col];</span>
 	}
 
 	public String getWinner() {
-<span class="fc" id="L72">		return winner;</span>
+<span class="fc" id="L90">		return winner;</span>
 	}
 
 }
